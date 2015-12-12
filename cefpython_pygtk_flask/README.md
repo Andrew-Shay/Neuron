@@ -94,6 +94,7 @@ Two directories will be created, `dist` and `build`
 `build` contains the temporary files used to create the executable  
 `dist` contains the files that need to be distributed  
 Manually copy the folders `static` and `templates` into `dist/Neuron`  
+You can modify `neuron_installer.spec` to match the name of the new application
 
 # References
 [CEFPython](https://github.com/cztomczak/cefpython) - Python bindings for the Chromium Embedded Framework  
