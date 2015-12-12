@@ -17,9 +17,18 @@ Create a directory for new your project
 Download the contents of this folder into your directory
 
 ### Setup Environment
-(This step is optional but recommended)  
-Create new virtual environment `CMD HERE`  
-Install requirements `CMD HERE`
+
+[Python 2.7](https://www.python.org/downloads/)  
+[PyGTK All In One for Python 2.7](http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/)  
+
+(Virtual Env Optional)  
+`pip install virtualenv`
+Create new virtual environment `virtualenv neuron`  
+Activate virtualenv ``
+
+`pip install flask`  
+`pip install tornado`  
+`pip install cefpython`  
 
 ### Test Application
 Start the application to make sure everything is working `python neuron.py`  
