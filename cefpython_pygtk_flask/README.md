@@ -22,9 +22,9 @@ Download the contents of this folder into your directory
 [PyGTK All In One for Python 2.7](http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/)  
 
 (Virtual Env Optional)  
-`pip install virtualenv`
+`pip install virtualenv`  
 Create new virtual environment `virtualenv neuron`  
-Activate virtualenv ``
+Activate virtualenv ``  
 
 `pip install flask`  
 `pip install tornado`  
@@ -83,7 +83,9 @@ Sample AJAX functions are included in the HTML to communicate with the backend F
 
 ### GUI
 `Bootstrap` is used for the HTML.  This is not required, any HTML can be used.  
-Modifying the files in the `templates` and `static` directories will allow you change the GUI.
+Modifying the files in the `templates` and `static` directories will allow you change the GUI.  
+You call run `python app.py` and go to `localhost:5000` in your browser to work on your application without having 
+to execute `neuron.py`
 
 ## Create Windows Executable with PyInstaller
 Coming Soon....
