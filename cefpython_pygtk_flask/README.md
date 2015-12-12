@@ -91,7 +91,7 @@ to execute `neuron.py`
 ## Create Windows Executable with PyInstaller
 Execute `pyinstaller neuron_installer.spec`  
 Two directories will be created, `dist` and `build`  
-`build` contains the temporary files used to created the executable  
+`build` contains the temporary files used to create the executable  
 `dist` contains the files that need to be distributed  
 Manually copy the folders `static` and `templates` into `dist/Neuron`  
 
