@@ -65,9 +65,22 @@ Open `neuron.py` and go to the `PyGTKExample` class and in the `__init__` functi
 `self.mainWindow.set_title('Neuron')` to rename your application.  
 Then edit `icon.ico` and `icon_big.ico` to your application's icon.
 
-### Main Logic and Visuals
-Modifying `app.py` will change the main logic of your application.  
-Changing the files in the `templates` and `static` directory is where the GUI aspect of your application resides.
+## Modifying the Application
+After rebranding the project, development on the new application can begin.
+
+### Main Program Logic
+`app.py` is the Flask application that controls the main logic of the application.  
+Sample AJAX functions are included in the HTML to communicate with the backend Flask application.
+
+### GUI
+`Bootstrap` is used for the HTML.  This is not required, any HTML can be used.  
+Modifying the files in the `templates` and `static` directories will allow you change the GUI.
 
 ## Create Windows Executable with PyInstaller
 Coming Soon....
+
+# References
+[CEFPython](https://github.com/cztomczak/cefpython) - Python bindings for the Chromium Embedded Framework  
+[Flask](http://flask.pocoo.org/) - Python microframework  
+[Bootstrap](http://getbootstrap.com/) - Web Front-End Framework  
+[PyInstaller](http://www.pyinstaller.org/) - Turn Python projects into executables  
