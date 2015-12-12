@@ -29,6 +29,7 @@ Activate virtualenv ``
 `pip install flask`  
 `pip install tornado`  
 `pip install cefpython`  
+`pip install pyinstaller`  
 
 ### Test Application
 Start the application to make sure everything is working `python neuron.py`  
@@ -88,7 +89,11 @@ You call run `python app.py` and go to `localhost:5000` in your browser to work 
 to execute `neuron.py`
 
 ## Create Windows Executable with PyInstaller
-Coming Soon....
+Execute `pyinstaller neuron_installer.spec`  
+Two directories will be created, `dist` and `build`  
+`build` contains the temporary files used to created the executable  
+`dist` contains the files that need to be distributed  
+Manually copy the folders `static` and `templates` into `dist/Neuron`  
 
 # References
 [CEFPython](https://github.com/cztomczak/cefpython) - Python bindings for the Chromium Embedded Framework  
