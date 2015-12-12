@@ -1,0 +1,18 @@
+.neuron_row{
+    padding: 0px;
+    background: none;
+    border: none;
+}
+
+.binding_row{
+    padding: 0px 10px 0px 10px;
+    background: none;
+    border: none;
+}
+
+.externalLink {
+	text-decoration: underline;
+	color: #87AA53;
+  cursor: pointer;
+  cursor: hand;
+}
