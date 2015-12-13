@@ -1,6 +1,4 @@
-<div style="background-color: #cfaeff; display: inline-block; width: 100%;"><img width="168px" style="dispaly: inline-block; vertical-align: middle; padding: 10px 0px 10px 10px;" src="http://i.imgur.com/BOoOK30.png"/></div>
-
-#About
+#Neuron
 Neuron is a Python project that allows an application's GUI to be built with HTML and Javascript.
 It's simply a sample project that is ready to be downloaded and modified to fit your application.
 
