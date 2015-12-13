@@ -28,7 +28,7 @@ Activate virtualenv ``
 
 `pip install flask`  
 `pip install tornado`  
-`pip install cefpython`  
+`pip install cefpython3`  
 `pip install pyinstaller`  
 
 ### Test Application
