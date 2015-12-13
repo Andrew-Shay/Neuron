@@ -20,12 +20,6 @@ Download the contents of this folder into your directory
 
 [Python 2.7](https://www.python.org/downloads/)  
 [PyGTK All In One for Python 2.7](http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/)  
-
-(Virtual Env Optional)  
-`pip install virtualenv`  
-Create new virtual environment `virtualenv neuron`  
-Activate virtualenv ``  
-
 `pip install flask`  
 `pip install tornado`  
 `pip install cefpython3`  
