@@ -89,6 +89,7 @@ You call run `python app.py` and go to `localhost:5000` in your browser to work 
 to execute `neuron.py`
 
 ## Create Windows Executable with PyInstaller
+The following must be executed on a 32bit Windows machine with 32bit Python  
 Execute `pyinstaller neuron_installer.spec`  
 Two directories will be created, `dist` and `build`  
 `build` contains the temporary files used to create the executable  
