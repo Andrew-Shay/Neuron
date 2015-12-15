@@ -96,3 +96,6 @@ You can modify `neuron_installer.spec` to match the name of the new application
 [Flask](http://flask.pocoo.org/) - Python microframework  
 [Bootstrap](http://getbootstrap.com/) - Web Front-End Framework  
 [PyInstaller](http://www.pyinstaller.org/) - Turn Python projects into executables  
+
+# Screenshot
+![Neuron Screenshot](screen_shot.png)
