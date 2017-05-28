@@ -28,7 +28,7 @@ Download the contents of the directory 'neuron' into your directory
 `pip install pyinstaller`  
 
 ### Test Application
-Start the application to make sure everything is working `python neuron.py`  
+Start the application to make sure everything is working `python neuron_app.py`  
 The application comes with a sample GUI with some interactions with the backend.  
 The data you see is loaded dynamically from the backend then javascript loads them into the form.  
 You can modify the data in the form and click `Save`. Then an AJAX call will be made to send it to the backend and
