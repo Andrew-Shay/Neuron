@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# Launch browser via CEFPython
+
+# ------ CEF Python Notes ------
 # Example of embedding CEF Python browser using wxPython library.
 # This example has a top menu and a browser widget without navigation bar.
 
@@ -6,6 +10,7 @@
 # - wxPython 3.0 on Windows/Mac
 # - wxPython 2.8 on Linux
 # - CEF Python v55.4+
+# ------
 
 import os
 import platform
@@ -64,8 +69,7 @@ def start_cyclone(app_port):
     """
     Starts Tornado which runs Flask
 
-    :param app_port: Port that Tornado will use
-    :type app_port: int
+    :param int app_port: Port that Tornado will use
     """
 
     cyclone.start_cyclone(app_port)
@@ -139,7 +143,8 @@ class MainFrame(wx.Frame):
 
     def setup_icon(self):
         icon_file = os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                                 "resources", "wxpython.png")
+                                 "icon.ico")
+
         # wx.IconFromBitmap is not available on Linux in wxPython 3.0/4.0
         if os.path.exists(icon_file) and hasattr(wx, "IconFromBitmap"):
             icon = wx.IconFromBitmap(wx.Bitmap(icon_file, wx.BITMAP_TYPE_PNG))
@@ -150,11 +155,11 @@ class MainFrame(wx.Frame):
         (width, height) = self.browser_panel.GetClientSize().Get()
         window_info.SetAsChild(self.browser_panel.GetHandle(), [0, 0, width, height])
 
+        # NEURON
         app_port = find_port()
         t = threading.Thread(target=start_cyclone, args=(app_port,))
         t.daemon = True
         t.start()
-
         flask_url = "http://localhost:" + str(app_port)
 
         self.browser = cef.CreateBrowserSync(window_info, url=flask_url)
@@ -200,7 +205,7 @@ class MainFrame(wx.Frame):
                 os._exit(0)
         else:
             # Calling browser.CloseBrowser() and/or self.Destroy()
-            # in OnClose may cause app crash on some paltforms in
+            # in OnClose may cause app crash on some platforms in
             # some use cases, details in Issue #107.
             self.browser.ParentWindowWillClose()
             event.Skip()
