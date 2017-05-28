@@ -16,7 +16,7 @@ import threading
 import wx
 from cefpython3 import cefpython as cef
 
-
+from neuron import cyclone
 
 
 # Fix for PyCharm hints warnings when using static methods
@@ -67,7 +67,7 @@ def start_cyclone(app_port):
     :param app_port: Port that Tornado will use
     :type app_port: int
     """
-    from neuron import cyclone
+
     cyclone.start_cyclone(app_port)
 
 
@@ -100,8 +100,7 @@ def check_versions():
 class MainFrame(wx.Frame):
 
     def __init__(self):
-        wx.Frame.__init__(self, parent=None, id=wx.ID_ANY,
-                          title=TITLE, size=(WIDTH, HEIGHT))
+        wx.Frame.__init__(self, parent=None, id=wx.ID_ANY, title=TITLE, size=(WIDTH, HEIGHT))
         self.browser = None
 
         # Must ignore X11 errors like 'BadWindow' and others by
@@ -149,26 +148,23 @@ class MainFrame(wx.Frame):
     def embed_browser(self):
         window_info = cef.WindowInfo()
         (width, height) = self.browser_panel.GetClientSize().Get()
-        window_info.SetAsChild(self.browser_panel.GetHandle(),
-                               [0, 0, width, height])
+        window_info.SetAsChild(self.browser_panel.GetHandle(), [0, 0, width, height])
 
         app_port = find_port()
-        # threading.Thread(start_cyclone, (app_port,))
         t = threading.Thread(target=start_cyclone, args=(app_port,))
         t.daemon = True
         t.start()
 
-        self.flask_url = "http://localhost:" + str(app_port)
+        flask_url = "http://localhost:" + str(app_port)
 
-        self.browser = cef.CreateBrowserSync(window_info, url=self.flask_url)
+        self.browser = cef.CreateBrowserSync(window_info, url=flask_url)
         self.browser.SetClientHandler(FocusHandler())
 
     def OnSetFocus(self, _):
         if not self.browser:
             return
         if WINDOWS:
-            WindowUtils.OnSetFocus(self.browser_panel.GetHandle(),
-                                   0, 0, 0)
+            WindowUtils.OnSetFocus(self.browser_panel.GetHandle(), 0, 0, 0)
         self.browser.SetFocus(True)
 
     def OnSize(self, _):
@@ -220,8 +216,7 @@ class FocusHandler(object):
     def OnGotFocus(self, browser, **_):
         # Temporary fix for focus issues on Linux (Issue #284).
         if LINUX:
-            print("[wxpython.py] FocusHandler.OnGotFocus:"
-                  " keyboard focus fix (Issue #284)")
+            print("[wxpython.py] FocusHandler.OnGotFocus: keyboard focus fix (Issue #284)")
             browser.SetFocus(True)
 
 
@@ -239,8 +234,7 @@ class CefApp(wx.App):
         # called. Doing wx window creation in OnPreInit() seems to
         # resolve the problem (Issue #350).
         if MAC and wx.version().startswith("4."):
-            print("[wxpython.py] OnPreInit: initialize here"
-                  " (wxPython 4.0 fix)")
+            print("[wxpython.py] OnPreInit: initialize here (wxPython 4.0 fix)")
             self.initialize()
 
     def OnInit(self):
