@@ -1,10 +1,5 @@
-# -----------------------------------
-#     app.py
-#     version: 1.0.0
-#     Author: Andrew Shay
-#     Created: December 10 2015
-#     Description: The Flask server that powers Neuron
-# -----------------------------------
+# -*- coding: utf-8 -*-
+# Flask app that handle application logic
 
 
 import tkinter as tk
