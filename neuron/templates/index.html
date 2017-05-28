@@ -1,0 +1,184 @@
+{% extends "base.html" %} {% block content %}
+
+<div id="successAlert" style="display: none;" class="alert alert-success" role="alert">Successfully Saved!</div>
+
+<div class="row">
+    <div class="nueron_row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="mode_label" class="panel-title" style="padding-bottom: 5px;">Random Data</h3>
+                <button type="button" class="btn btn-xs btn-danger" onclick="deleteData();">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"> </span>
+                </button>
+                <button onclick="dataUp()" type="button" class="btn btn-xs btn-primary">
+                    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                </button>
+                <button onclick="dataDown()" type="button" class="btn btn-xs btn-primary">
+                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <div class="input-group" style="padding-bottom: 10px;">
+                    <input id="newData" type="text" class="form-control" placeholder="New Data">
+                    <span class="input-group-btn">
+                        <button onclick="addData()" class="btn btn-success" type="button">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+                <select id="dataList" class="form-control" size="10" name="selectionField" multiple="no">
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /row -->
+
+<div class="row">
+    <button onclick="saveData()" class="btn btn-success pull-right" type="button">Save</button>
+</div>
+
+<div class="row">
+    <button onclick="openFolder()" class="btn btn-success navbar-right" type="button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Get Path of Directory
+    </button>
+</div>
+
+<input style="display:none;" name="channelData" placeholder="question one">
+<script>
+    <!--
+    var random_json = "{{ random_json }}";
+    random_json = window.atob(random_json); //Decode JSON
+    random_json = JSON.parse(random_json);
+
+
+    function loadData() {
+        document.getElementById("dataList").innerHTML = ""
+        var i;
+        for (i = 0; i < random_json.length; i++) {
+            newOption = document.createElement('option');
+            newOption.innerHTML = random_json[i];
+            document.getElementById("dataList").appendChild(newOption);
+        }
+    }
+    loadData()
+
+
+    function getSelectedDataName() {
+        var dataSelection = document.getElementById("dataList");
+        return dataSelection.options[dataSelection.selectedIndex].value;
+    }
+
+
+    function getSelectedDataIndex() {
+        var dataSelection = document.getElementById("dataList");
+        return dataSelection.selectedIndex;
+    }
+
+
+    function getSelectedDataArray() {
+        return channel_json[getSelectedDataIndex()][getSelectedDataName()];
+    }
+
+
+    function addData() {
+        var newData = document.getElementById('newData').value;
+        random_json.push(newData);
+        loadData();
+    }
+
+
+    function deleteData() {
+        var dataIndex = getSelectedDataIndex();
+        random_json.splice(dataIndex, 1);
+        loadData();
+    }
+
+
+    function dataUp() {
+        var dataIndex = getSelectedDataIndex();
+        if (dataIndex != 0) {
+            var selectedData = random_json[dataIndex];
+            random_json[dataIndex] = random_json[dataIndex - 1];
+            random_json[dataIndex - 1] = selectedData;
+            loadData();
+        }
+    }
+
+
+    function dataDown() {
+        var dataIndex = getSelectedDataIndex();
+        if (dataIndex != random_json.length - 1) {
+            var selectedData = random_json[dataIndex]
+            random_json[dataIndex] = random_json[dataIndex + 1]
+            random_json[dataIndex + 1] = selectedData
+            loadData()
+        }
+    }
+
+
+    function saveData() {
+        var json_string = JSON.stringify(random_json);
+        json_string = window.btoa(json_string);
+
+        var ajaxRequest;
+
+        try {
+            ajaxRequest = new XMLHttpRequest();
+        } catch (e) {
+            alert("Server could not be reached. Restart Neuron");
+            return false;
+        }
+
+        // Create a function that will receive data sent from the server
+        ajaxRequest.onreadystatechange = function() {
+            if (ajaxRequest.readyState == 4) {
+                // Get the data from the server's response
+                var response = ajaxRequest.responseText;
+                //$('#successAlert').show();
+                document.getElementById('successAlert').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('successAlert').style.display = 'none';
+                }, 1500);
+            }
+        }
+        ajaxRequest.open("POST", "/save_data/", true);
+        ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajaxRequest.send("random_json=" + json_string);
+    }
+
+
+    function openFolder() {
+        var ajaxRequest; // The variable that makes Ajax possible!
+
+        try {
+            ajaxRequest = new XMLHttpRequest();
+        } catch (e) {
+            alert("Server could not be reached. Restart Neuron");
+            return false;
+        }
+
+        // Create a function that will receive data sent from the server
+        ajaxRequest.onreadystatechange = function() {
+            if (ajaxRequest.readyState == 4) {
+                // Get the data from the server's response
+                var response = ajaxRequest.responseText;
+                //$('#successAlert').show();
+                document.getElementById("successAlert").innerHTML = response
+                document.getElementById('successAlert').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('successAlert').style.display = 'none';
+                }, 1500);
+            }
+        }
+        ajaxRequest.open("GET", "/open_folder/", true);
+        ajaxRequest.send(null);
+    }
+
+
+    -->
+
+</script>
+
+{% endblock %}
