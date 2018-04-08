@@ -1,4 +1,6 @@
 cefpython3
 flask
-tornado
+gevent
 pyinstaller
+wxpython
+pywin32
