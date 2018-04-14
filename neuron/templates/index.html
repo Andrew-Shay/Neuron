@@ -68,8 +68,8 @@
             <label for="exampleFormControlInput1">New Data</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Add data here. Press Add Data. Then press Load Data.">
           </div>
-          <button class="btn btn-primary mb-2" onclick="addData()">Add Data</button>
-          <button class="btn btn-primary mb-2" onclick="getData()">Load Data</button>
+            <button type="button" class="btn btn-primary mb-2" onclick="addData()">Add Data</button>
+            <button type="button" class="btn btn-primary mb-2" onclick="getData()">Load Data</button>
         </form>
 
 
@@ -93,7 +93,7 @@
       jsonData = JSON.parse(jsonData);
         
       function loadData(newData) {
-          document.getElementById("exampleFormControlSelect2").innerHTML = ""
+          document.getElementById("exampleFormControlSelect2").innerHTML = "";
           var i;
           for (i = 0; i < newData.length; i++) {
               newOption = document.createElement('option');
@@ -129,6 +129,7 @@
           ajaxRequest.open("POST", "/add_data/", true);
           ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           ajaxRequest.send("new_value=" + newData);
+          addDataField.innerHTML = "";
       }
         
         function getData() {

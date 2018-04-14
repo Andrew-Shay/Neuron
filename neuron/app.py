@@ -1,4 +1,4 @@
-# Flask app that handle application logic
+# Flask app that handles application logic
 
 
 import base64
@@ -7,7 +7,6 @@ import json
 from flask import Flask
 from flask import render_template
 from flask import request
-
 from neuron import get_root_path
 
 app = Flask(__name__, static_folder=get_root_path('static'), template_folder=get_root_path('templates'))
