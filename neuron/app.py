@@ -8,9 +8,11 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
-app = Flask(__name__)
-files = None
+from neuron import get_root_path
 
+app = Flask(__name__, static_folder=get_root_path('static'), template_folder=get_root_path('templates'))
+
+DATA = ["Data One", "Data Two"]
 
 @app.before_request
 def before_request():
@@ -24,20 +26,23 @@ def teardown_request(exception):
 
 @app.route('/', methods=['GET'])
 def index():
-    random_json = ["Data One", "Data Two"]
-    random_json = json.dumps(random_json)
-    random_json = base64.b64encode(random_json.encode())
-    return render_template('index.html', random_json=random_json)
+    json_data = json.dumps(DATA)
+    return render_template('index.html', json_data=json_data)
 
 
-@app.route('/save_data/', methods=['POST'])
-def save_data():
-    random_json = request.form["random_json"]
-    random_json = base64.b64decode(random_json)
-    random_json = json.loads(random_json)
+@app.route('/get_data', methods=['GET'])
+def get_data():
+    json_data = json.dumps(DATA)
+    return json_data
 
-    for data in random_json:
-        print(data)
+
+@app.route('/add_data/', methods=['POST'])
+def add_data():
+    new_value = request.form["new_value"]
+    new_value = base64.b64decode(new_value)
+    new_value = new_value.decode('utf-8')
+    DATA.append(new_value)
+    print("Added new value: '{}'".format(new_value))
 
     return "Success"
 
