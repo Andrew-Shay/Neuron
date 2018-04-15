@@ -161,6 +161,7 @@ if __name__ == '__main__':
         INSTALLEROUTNAME=INSTALLER_OUT_NAME,
         VERSION=APP_VERSION,
         COMPANY_NAME=COMPANY_NAME,
+        WEBSITE=WEBSITE,
     )
 
     nsi_path = os.path.join(LATEST_DIST_SRC, 'installer.nsi')

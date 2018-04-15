@@ -7,6 +7,7 @@
 !define APPNAME "{NAME}"
 !define COMPANYNAME "{COMPANY_NAME}"
 !define DESCRIPTION "{DESCRIPTION}"
+!define WEBSITE "{WEBSITE}"
 Var StartMenuFolder
 BrandingText "{BRAND}"
 
@@ -110,7 +111,7 @@ Section "${{APPNAME}}" SecDummy
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${{APPNAME}}" \
                  "Publisher" "${{COMPANYNAME}}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${{APPNAME}}" \
-                 "HelpLink" "https://shayConcepts.com"
+                 "HelpLink" "${{WEBSITE}}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${{APPNAME}}" \
                  "DisplayVersion" "{VERSION}"
 
