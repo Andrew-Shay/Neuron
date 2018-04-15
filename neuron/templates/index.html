@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/starter-template.css') }}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+
+
+
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Data</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">New Data</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Add data here. Press Add Data. Then press Load Data.">
+          </div>
+            <button type="button" class="btn btn-primary mb-2" onclick="addData()">Add Data</button>
+            <button type="button" class="btn btn-primary mb-2" onclick="getData()">Load Data</button>
+        </form>
+
+
+
+      </div>
+
+    </main><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='js/jquery-slim.min.js') }}"><\/script>')</script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+    <script>
+
+      var jsonData = '{{ json_data|safe }}';
+      jsonData = JSON.parse(jsonData);
+        
+      function loadData(newData) {
+          document.getElementById("exampleFormControlSelect2").innerHTML = "";
+          var i;
+          for (i = 0; i < newData.length; i++) {
+              newOption = document.createElement('option');
+              newOption.innerHTML = newData[i];
+              document.getElementById("exampleFormControlSelect2").appendChild(newOption);
+          }
+      }
+      loadData(jsonData)
+
+      function addData() {
+          var addDataField = document.getElementById("exampleFormControlInput1");
+          var newData = addDataField.value;
+          newData = window.btoa(newData);
+          var ajaxRequest;
+          try {
+              ajaxRequest = new XMLHttpRequest();
+          } catch (e) {
+              alert("Server could not be reached. Restart Neuron");
+              return false;
+          }
+          // Create a function that will receive data sent from the server
+          ajaxRequest.onreadystatechange = function() {
+              if (ajaxRequest.readyState == 4) {
+                  // Get the data from the server's response
+                  var response = ajaxRequest.responseText;
+                  //$('#successAlert').show();
+                  alert("Data Added");
+              }
+          }
+          ajaxRequest.open("POST", "/add_data/", true);
+          ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          ajaxRequest.send("new_value=" + newData);
+          addDataField.value = "";
+      }
+        
+        function getData() {
+          var ajaxRequest;
+          try {
+              ajaxRequest = new XMLHttpRequest();
+          } catch (e) {
+              alert("Server could not be reached. Restart Neuron");
+              return false;
+          }
+          // Create a function that will receive data sent from the server
+          ajaxRequest.onreadystatechange = function() {
+              if (ajaxRequest.readyState == 4) {
+                  // Get the data from the server's response
+                  var response = ajaxRequest.responseText;
+                  response = JSON.parse(response);
+                  loadData(response)
+                  alert("Data Loaded");
+              }
+          }
+          ajaxRequest.open("GET", "/get_data", true);
+          //ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          ajaxRequest.send();
+      }
+
+
+  </script>
+
+  </body>
+</html>
