@@ -10,7 +10,6 @@ This project just combines different projects together with an installer.
 `CEF Python` - Portable browser  
 `Flask` - Local web server  
 `Gevent` - Launches Flask  
-`tkinter` - Folder selection  
 `Bootstrap` - Web UI  
 `xmlhttprequest` - Communication with Flask to update UI  
 
@@ -19,6 +18,7 @@ This project just combines different projects together with an installer.
 ## Get Started
 
 ### Clone
+
 Clone this repo
 
 ### Setup Environment
@@ -29,11 +29,8 @@ Clone this repo
 
 ### Test Application
 
-Start the application to make sure everything is working `python neuron_app.py`  
+Start the application to make sure everything is working `python __main__.py`  
 The application comes with a sample GUI with some interactions with the backend.  
-The data you see is loaded dynamically from the backend then javascript loads them into the form.  
-You can modify the data in the form and click `Save`. Then an AJAX call will be made to send it to the backend and
-printed in the terminal.  
 The included HTML and Javascript functions are a sample of how actions can be performed.
 
 ## Understanding Structure
@@ -51,9 +48,18 @@ This file is used to run `gevent` which handles running Flask and the incoming c
 
 ### app.py
 
-This is the Flask application.  This is were routing for http calls will be, creating the HTML, and the backend of  
+This is the Flask application.  This is where routing for http calls will be, creating the HTML, and the backend of 
 the application.  
 This is where main part of the application is handled. 
+
+### \_\_info\_\_.py
+
+Fields that contain your application name and related information.
+
+### \_\_init\_\_.py
+
+Configures paths for the application.  
+Contains functions for getting and creating paths for your application.  
 
 ### Templates directory
 
@@ -63,13 +69,21 @@ Contains the HTML files for the application
 
 Contains the resources for the HTML files. Fonts, images, javascript libraries etc.
 
-## Rebrand Project ***** TODO *****
+## Rebrand Project 
 
 ### Windowing and Icons
 
-Open `neuron.py` and go to the `PyGTKExample` class and in the `__init__` function you can modify 
-`self.mainWindow.set_title('Neuron')` to rename your application.  
-Then edit `icon.ico` and `icon_big.ico` to your application's icon.
+The top of \_\_main\_\_.py sets the size of the application.  
+`icon.ico` is the icon used by the window.  
+
+When creating an icon, you can bundle multiple sizes together to ensure it appears nicely at different sizes.  
+You can download [icobundle](http://telegraphics.com.au/sw/product/ICOBundle) to combine the icons into one file.  
+You can use this command. It also shows the different sizes you should create (eg icon24.ico is the 24x24 pixels size)  
+`.\icobundl.exe -o icon.ico icon16.ico icon24.ico icon32.ico icon40.ico icon48.ico icon64.ico icon96.ico icon128.ico icon256.ico`
+
+### Name, version etc
+
+Modify `__info__.py`
 
 ## Modifying the Application
 
@@ -85,17 +99,35 @@ Sample AJAX functions are included in the HTML to communicate with the backend F
 `Bootstrap` is used for the HTML.  This is not required, any HTML can be used.  
 Modifying the files in the `templates` and `static` directories will allow you change the GUI.  
 You call run `python app.py` and go to `localhost:5000` in your browser to work on your application without having 
-to execute `neuron.py`
+to execute `__main__.py`.  
+`templates/index.html` contains Javascript calls to the backend to retrieve data.
 
-## Create Windows Executable with PyInstaller
+## Create Windows Executable and Installer
 
-The following must be executed on a 32bit Windows machine with 32bit Python  
-Execute `pyinstaller neuron_installer.spec`  
-Two directories will be created, `dist` and `build`  
-`build` contains the temporary files used to create the executable  
-`dist` contains the files that need to be distributed  
-Manually copy the folders `static` and `templates` into `dist/Neuron`  
-You can modify `neuron_installer.spec` to match the name of the new application
+### PyInstaller and exe
+
+An exe for the application is created with PyInstaller.  
+`build/build.spec` is the PyInstaller spec which configures PyInstaller.  
+Extra files and directories to include (eg icon.ico) are set in the spec file.  
+To prevent the console window from appearing set `EXE(console=False)`.  
+
+### NSIS installer
+
+Install NSIS [http://nsis.sourceforge.net/Download](http://nsis.sourceforge.net/Download)  
+
+The installer is created with nsis.  
+`build/installer.nsi` is the template that will be automatically modified when creating a new build.  
+Modify `build/icon.ico` and `build/header.bmp` for your application.  
+Modify `build/license.txt` to be the contents of your application's license.  
+Modify the fields at the top of `build/build.py`  
+
+### Create new build
+
+`$ cd build/`  
+`$ python build.py`  
+
+This will run pyinstaller to create the exe, copy it into `build/dist/`, and then create the installer with nsis.  
+A file containing multiple hashes of the installer is also created.
 
 # References
 
@@ -103,6 +135,7 @@ You can modify `neuron_installer.spec` to match the name of the new application
 [Flask](http://flask.pocoo.org/) - Python microframework  
 [Bootstrap](http://getbootstrap.com/) - Web Front-End Framework  
 [PyInstaller](http://www.pyinstaller.org/) - Turn Python projects into executables  
+[NSIS](http://nsis.sourceforge.net/Main%5FPage) - Creates installer  
 
 # Screenshot
 

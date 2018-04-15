@@ -17,7 +17,7 @@ import threading
 import wx
 from cefpython3 import cefpython as cef
 
-from neuron import start_gevent, APP_NAME
+from neuron import start_gevent, APP_NAME, get_root_path
 
 WindowUtils = cef.WindowUtils()
 
@@ -29,7 +29,7 @@ MAC = (platform.system() == "Darwin")
 # Configuration
 TITLE = APP_NAME
 WIDTH = 1068
-HEIGHT = 550
+HEIGHT = 650
 
 # Globals
 g_count_windows = 0
@@ -151,11 +151,15 @@ class MainFrame(wx.Frame):
             self.Show()
 
     def setup_icon(self):
-        icon_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), "icon.ico")
-        # wx.IconFromBitmap is not available on Linux in wxPython 3.0/4.0
-        if os.path.exists(icon_file) and hasattr(wx, "IconFromBitmap"):
-            icon = wx.IconFromBitmap(wx.Bitmap(icon_file, wx.BITMAP_TYPE_PNG))
-            self.SetIcon(icon)
+        # icon_file = get_root_path('icon.ico')
+        # # wx.IconFromBitmap is not available on Linux in wxPython 3.0/4.0
+        # if os.path.exists(icon_file) and hasattr(wx, "IconFromBitmap"):
+        #     icon = wx.IconFromBitmap(wx.Bitmap(icon_file, wx.BITMAP_TYPE_PNG))
+        #     self.SetIcon(icon)
+
+        ib = wx.IconBundle()
+        ib.AddIcon(get_root_path('icon.ico'), wx.BITMAP_TYPE_ANY)
+        self.SetIcons(ib)
 
     def embed_browser(self):
         window_info = cef.WindowInfo()

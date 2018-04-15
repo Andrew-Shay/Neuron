@@ -121,15 +121,12 @@
                   var response = ajaxRequest.responseText;
                   //$('#successAlert').show();
                   alert("Data Added");
-                  setTimeout(function() {
-                      alert("Failure?");
-                  }, 1500);
               }
           }
           ajaxRequest.open("POST", "/add_data/", true);
           ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           ajaxRequest.send("new_value=" + newData);
-          addDataField.innerHTML = "";
+          addDataField.value = "";
       }
         
         function getData() {
@@ -147,11 +144,7 @@
                   var response = ajaxRequest.responseText;
                   response = JSON.parse(response);
                   loadData(response)
-
-                  alert("Data Added");
-                  setTimeout(function() {
-                      alert("Failure?");
-                  }, 1500);
+                  alert("Data Loaded");
               }
           }
           ajaxRequest.open("GET", "/get_data", true);
