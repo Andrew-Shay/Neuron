@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/andrew-shay/Neuron.svg)](https://gitter.im/andrew-shay/Neuron?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # Neuron
 
 Neuron is a Python project that allows an application's GUI to be built with HTML and Javascript.  
