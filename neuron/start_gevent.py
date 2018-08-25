@@ -1,6 +1,6 @@
 # Starts Gevent which runs Flask
 
-from gevent.wsgi import WSGIServer
+from gevent.pywsgi import WSGIServer
 from neuron.app import app
 
 
