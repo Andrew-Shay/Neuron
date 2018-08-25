@@ -131,6 +131,11 @@ Modify the fields at the top of `build/build.py`
 This will run pyinstaller to create the exe, copy it into `build/dist/`, and then create the installer with nsis.  
 A file containing multiple hashes of the installer is also created.
 
+# Notes
+
+- `requirements.txt` minimum versions show what was tested with
+- `build\hook-gevent.py` is a temporary fix for pyinstaller not importing modules [pyinstaller #3664](https://github.com/pyinstaller/pyinstaller/issues/3664)
+
 # References
 
 [CEFPython](https://github.com/cztomczak/cefpython) - Python bindings for the Chromium Embedded Framework  
