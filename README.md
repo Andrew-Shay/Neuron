@@ -25,13 +25,14 @@ Clone this repo
 
 ### Setup Environment
 
-[Python 3.6](https://www.python.org/downloads/)  
+[Python 3.7](https://www.python.org/downloads/)  
 
 `pip install -r requirements`
 
 ### Test Application
 
-Start the application to make sure everything is working `python __main__.py`  
+`cd` into the repo folder.  
+Start the application to make sure everything is working `python -m neuron`  
 The application comes with a sample GUI with some interactions with the backend.  
 The included HTML and Javascript functions are a sample of how actions can be performed.
 
@@ -134,7 +135,6 @@ A file containing multiple hashes of the installer is also created.
 # Notes
 
 - `requirements.txt` minimum versions show what was tested with
-- `build\hook-gevent.py` is a temporary fix for pyinstaller not importing modules [pyinstaller #3664](https://github.com/pyinstaller/pyinstaller/issues/3664)
 
 # References
 
