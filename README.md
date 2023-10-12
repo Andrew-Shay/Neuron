@@ -1,4 +1,7 @@
-[![Gitter](https://badges.gitter.im/andrew-shay/Neuron.svg)](https://gitter.im/andrew-shay/Neuron?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+# ⚠ ARCHIVED AND DEPRECATED ⚠
+This project is currently deprecated and will not be receiving updates.  
+I might resurrect it in the future.  
+The core dependency, cefpython, appears unmaintained.  
 
 # Neuron
 
